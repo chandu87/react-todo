@@ -4,7 +4,6 @@ var AddTodo= React.createClass({
   onAddtodoFormSubmit:function(e){
     e.preventDefault();
     var todoText = this.refs.addTodo.value;
-    console.log(todoText);
     if(todoText.length>0){
       this.refs.addTodo.value='';
       this.props.addTodo(todoText);
