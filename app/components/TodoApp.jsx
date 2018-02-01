@@ -43,7 +43,8 @@ handleSearch:function(showCompleted,searchText){
     });
 },
   render:function(){
-    var {todolist}= this.state;
+    var {todolist,showCompleted,searchText}= this.state;
+    var filteredtodos= TodoAPI.filterTodos(todolist,showCompleted,searchText);
 
     return(
       <div className="row">
@@ -51,7 +52,7 @@ handleSearch:function(showCompleted,searchText){
 
          <h1>TODO APP</h1>
          <TodoSearch onSearch = {this.handleSearch}/>
-         <TodoList todos={todolist} handleToggle={this.handleToggle}/>
+         <TodoList todos={filteredtodos} handleToggle={this.handleToggle}/>
          <AddTodo addTodo={this.handleTodo}/>
 
         </div>

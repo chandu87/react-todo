@@ -37,5 +37,25 @@ describe('TodoAPI',()=>{
     });
   });
 
+  describe('filter todos',()=>{
+    var todos= [{id:1,text:"asas",completed:true},{id:2,text:"asdvs",completed:false}];
+    if('should return all items if showCompleted is true',()=>{
+      var showCompleted = true;
+      var filteredtodos = TodoAPI.filterTodos(todos,showCompleted,searchText);
+      expect(filteredtodos.length).toBe(todos.length);
+    });
+    if('if showCompleted is false',()=>{
+      var showCompleted=false;
+      var filteredtodos = TodoAPI.filterTodos(todos,showCompleted,searchText);
+      expect(filteredtodos.length).toBe(1);
+    });
+    if('should sort by completed status',()=>{
+      var showCompleted = true;
+      var filteredtodos = TodoAPI.filterTodos(todos,showCompleted,searchText);
+      expect(filteredtodos[0].completed).toBe(false);
+
+    });
+  });
+
 
 });

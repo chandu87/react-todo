@@ -17,6 +17,30 @@ module.exports = {
     catch(e){
 
     }
-    return $.isArray(todos) ? todos : []; 
+    return $.isArray(todos) ? todos : [];
+  },
+  //function for filtering todo list
+  filterTodos:function(todos,showCompleted,searchText){
+    var filteredtodos = todos;
+
+    filteredtodos = filteredtodos.filter((todo)=>{
+      return !todo.completed || showCompleted;
+    });
+
+    filteredtodos.sort((a,b)=>{
+      if(!a.completed && b.completed){
+        return -1;
+      }
+      else if(a.completed && !b.completed){
+        return 1;
+      }
+      else{
+        return 0;
+      }
+
+    });
+
+    return filteredtodos
+
   }
 };
