@@ -1,5 +1,6 @@
 var React= require('react');
 var uuid = require('node-uuid');
+var moment = require('moment');
 
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
@@ -23,6 +24,7 @@ var TodoApp = React.createClass({
     var updatedTodos = this.state.todolist.map((todo)=>{
       if(todo.id === id){
         todo.completed=! todo.completed;
+        todo.completedAt=todo.completed ? moment().unix() : undefined ;
       }
       return todo;
     });
@@ -33,7 +35,7 @@ var TodoApp = React.createClass({
 handleTodo :function(text){
   this.setState({
     todolist:[...this.state.todolist
-      ,{id:uuid(),text:text,completed:false}]
+      ,{id:uuid(),text:text,completed:false,createdAt:moment().unix(),completedAt:undefined}]
   });
 },
 handleSearch:function(showCompleted,searchText){
