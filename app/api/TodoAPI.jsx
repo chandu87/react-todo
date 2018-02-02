@@ -23,10 +23,14 @@ module.exports = {
   filterTodos:function(todos,showCompleted,searchText){
     var filteredtodos = todos;
 
+    //filter by showCompleted checkbox
     filteredtodos = filteredtodos.filter((todo)=>{
       return !todo.completed || showCompleted;
     });
 
+
+
+    //sort todos with not completed first
     filteredtodos.sort((a,b)=>{
       if(!a.completed && b.completed){
         return -1;
@@ -40,7 +44,18 @@ module.exports = {
 
     });
 
-    return filteredtodos
+    //filter by search text
+    if(searchText.length===0){
+      return filteredtodos;
+    }else{
+      return filteredtodos.filter((todo)=>{
+          var text = todo.text.toLowerCase();
+          return text.indexOf(searchText) > -1;
+        });
+    }
+
+
+    return filteredtodos;
 
   }
 };
