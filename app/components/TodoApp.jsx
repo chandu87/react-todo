@@ -49,15 +49,17 @@ handleSearch:function(showCompleted,searchText){
     var filteredtodos= TodoAPI.filterTodos(todolist,showCompleted,searchText);
 
     return(
-      <div className="row">
-        <div className="columns medium-6 large-4 small-centered">
-
-         <h1>TODO APP</h1>
-         <TodoSearch onSearch = {this.handleSearch}/>
-         <TodoList todos={filteredtodos} handleToggle={this.handleToggle}/>
-         <AddTodo addTodo={this.handleTodo}/>
-
-        </div>
+      <div>
+          <h1 className="page-title">TODO APP</h1>
+          <div className="row">
+            <div className="columns medium-6 large-4 small-centered">
+              <div className="container">
+             <TodoSearch onSearch = {this.handleSearch}/>
+             <TodoList todos={filteredtodos} handleToggle={this.handleToggle}/>
+             <AddTodo addTodo={this.handleTodo}/>
+             </div>
+            </div>
+          </div>
       </div>
     );
   }
